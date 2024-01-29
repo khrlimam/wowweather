@@ -32,6 +32,16 @@ class Weather with _$Weather {
   String get dateEpochDescription =>
       DateFormat(kDefaultDateFormat).format(dateFromEpoch);
 
+  factory Weather.fromCurrentWeather(CurrentResponse weather) => Weather(
+        dateEpoch: weather.lastUpdatedEpoch,
+        tempInCelcius: weather.tempC,
+        conditionCode: weather.condition.code,
+        conditionDesc: weather.condition.text,
+        windKiloPerHour: weather.windKph,
+        humidity: weather.humidity,
+        visibilityInKm: weather.visKm,
+      );
+
   factory Weather.fromForecastDay(ForecastDay weather) => Weather(
         dateEpoch: weather.dateEpoch,
         tempInCelcius: weather.day.avgtempC,

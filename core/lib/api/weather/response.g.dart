@@ -43,7 +43,7 @@ CurrentResponse _$CurrentResponseFromJson(Map<String, dynamic> json) =>
       cloud: json['cloud'] as int,
       feelslikeC: json['feelslike_c'] as int,
       feelslikeF: (json['feelslike_f'] as num).toDouble(),
-      visKm: json['vis_km'] as int,
+      visKm: (json['vis_km'] as num).toDouble(),
       visMiles: json['vis_miles'] as int,
       uv: json['uv'] as int,
       gustMph: (json['gust_mph'] as num).toDouble(),

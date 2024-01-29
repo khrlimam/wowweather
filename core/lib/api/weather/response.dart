@@ -62,7 +62,7 @@ class CurrentResponse {
   @JsonKey(name: "feelslike_f")
   double feelslikeF;
   @JsonKey(name: "vis_km")
-  int visKm;
+  double visKm;
   @JsonKey(name: "vis_miles")
   int visMiles;
   @JsonKey(name: "uv")

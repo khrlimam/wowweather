@@ -16,6 +16,18 @@ class Home with _$Home {
     List<ForecastWeather>? forecasts,
   }) = _Home;
 
-  factory Home.fromResponse(WeatherResponse weather) =>
-      Home(location: Location.fromResponse(weather.location));
+  factory Home.fromResponse(WeatherResponse weather) => Home(
+      location: Location.fromResponse(weather.location),
+      currentWeather: Weather.fromCurrentWeather(weather.current),
+      //assume the first forecast is today's date
+      forecastHours: weather.forecast.forecastDay.first.hour
+          .map((hourly) => Weather.fromForecastHour(hourly))
+          .toList(),
+      forecasts: weather.forecast.forecastDay
+          .map((day) => ForecastWeather(
+              day: Weather.fromForecastDay(day),
+              hour: day.hour
+                  .map((hourly) => Weather.fromForecastHour(hourly))
+                  .toList()))
+          .toList());
 }

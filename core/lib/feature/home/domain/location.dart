@@ -5,8 +5,7 @@ part "location.freezed.dart";
 
 @freezed
 @immutable
-class Location
-    with _$Location {
+class Location with _$Location {
   const factory Location({
     required String name,
     @Default("") String region,
