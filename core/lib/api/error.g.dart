@@ -11,17 +11,7 @@ ErrorResponse _$ErrorResponseFromJson(Map<String, dynamic> json) =>
       error: Error.fromJson(json['error'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ErrorResponseToJson(ErrorResponse instance) =>
-    <String, dynamic>{
-      'error': instance.error,
-    };
-
 Error _$ErrorFromJson(Map<String, dynamic> json) => Error(
       code: json['code'] as int,
       message: json['message'] as String,
     );
-
-Map<String, dynamic> _$ErrorToJson(Error instance) => <String, dynamic>{
-      'code': instance.code,
-      'message': instance.message,
-    };

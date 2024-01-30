@@ -10,7 +10,7 @@ class WowWeatherApp extends StatelessWidget {
     return MaterialApp(
       title: kAppName,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellowAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       home: const HomePage(),

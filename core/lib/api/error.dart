@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part "error.g.dart";
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false, explicitToJson: false)
 class ErrorResponse {
   @JsonKey(name: "error")
   Error error;
@@ -11,12 +11,11 @@ class ErrorResponse {
     required this.error,
   });
 
-  factory ErrorResponse.fromJson(Map<String, dynamic> json) => _$ErrorResponseFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ErrorResponseToJson(this);
+  factory ErrorResponse.fromJson(Map<String, dynamic> json) =>
+      _$ErrorResponseFromJson(json);
 }
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false, explicitToJson: false)
 class Error {
   @JsonKey(name: "code")
   int code;
@@ -29,6 +28,4 @@ class Error {
   });
 
   factory Error.fromJson(Map<String, dynamic> json) => _$ErrorFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ErrorToJson(this);
 }

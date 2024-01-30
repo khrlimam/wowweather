@@ -1,5 +1,5 @@
 import 'package:core/api/weather/response.dart';
-import 'package:core/feature/home/domain/weather/conditions.dart';
+import 'package:core/feature/home/domain/weather/condition.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 
