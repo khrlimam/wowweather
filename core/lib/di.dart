@@ -10,4 +10,4 @@ final getIt = GetIt.instance;
   preferRelativeImports: true, // default
   asExtension: true, // default
 )
-void configureCoreDependencies() => getIt.$initGetItCore();
+Future<void> configureCoreDependencies() async => getIt.$initGetItCore();

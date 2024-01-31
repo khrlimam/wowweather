@@ -8,4 +8,4 @@ import 'di.config.dart';
   preferRelativeImports: true, // default
   asExtension: true, // default
 )
-void configureAppDependencies() => getIt.$initGetIt();
+Future<void> configureAppDependencies() async => getIt.$initGetIt();
