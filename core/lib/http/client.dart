@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:core/di.dart';
 import 'package:dio/dio.dart';
 
 import '../config/api.dart';
@@ -9,6 +10,10 @@ class ApiClient {
   final ApiConfig _apiConfig;
 
   ApiClient._(this._dio, this._apiConfig);
+
+  static ApiClient init() {
+    return ApiClient._(getIt<Dio>(), getIt<ApiConfig>());
+  }
 
   Future<Map<String, dynamic>> get(
     String path, {

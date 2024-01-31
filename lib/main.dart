@@ -16,5 +16,8 @@ void main() async {
 Future<void> configureConfigDependencies() async {
   DotEnv envConfig = DotEnv();
   await envConfig.load(fileName: ".env");
+
+  // manually register singleton for env config,
+  // since it depends on app specific environment file, e.g: .env
   getIt.registerSingleton<EnvConfig>(EnvConfigImpl(envConfig));
 }

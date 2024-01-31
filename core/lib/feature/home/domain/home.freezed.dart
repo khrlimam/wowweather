@@ -15,20 +15,22 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$Home {
+mixin _$WeatherHome {
   Location get location => throw _privateConstructorUsedError;
   Weather? get currentWeather => throw _privateConstructorUsedError;
   List<Weather>? get forecastHours => throw _privateConstructorUsedError;
   List<ForecastWeather>? get forecasts => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $HomeCopyWith<Home> get copyWith => throw _privateConstructorUsedError;
+  $WeatherHomeCopyWith<WeatherHome> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $HomeCopyWith<$Res> {
-  factory $HomeCopyWith(Home value, $Res Function(Home) then) =
-      _$HomeCopyWithImpl<$Res, Home>;
+abstract class $WeatherHomeCopyWith<$Res> {
+  factory $WeatherHomeCopyWith(
+          WeatherHome value, $Res Function(WeatherHome) then) =
+      _$WeatherHomeCopyWithImpl<$Res, WeatherHome>;
   @useResult
   $Res call(
       {Location location,
@@ -41,9 +43,9 @@ abstract class $HomeCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$HomeCopyWithImpl<$Res, $Val extends Home>
-    implements $HomeCopyWith<$Res> {
-  _$HomeCopyWithImpl(this._value, this._then);
+class _$WeatherHomeCopyWithImpl<$Res, $Val extends WeatherHome>
+    implements $WeatherHomeCopyWith<$Res> {
+  _$WeatherHomeCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -100,10 +102,11 @@ class _$HomeCopyWithImpl<$Res, $Val extends Home>
 }
 
 /// @nodoc
-abstract class _$$HomeImplCopyWith<$Res> implements $HomeCopyWith<$Res> {
-  factory _$$HomeImplCopyWith(
-          _$HomeImpl value, $Res Function(_$HomeImpl) then) =
-      __$$HomeImplCopyWithImpl<$Res>;
+abstract class _$$WeatherHomeImplCopyWith<$Res>
+    implements $WeatherHomeCopyWith<$Res> {
+  factory _$$WeatherHomeImplCopyWith(
+          _$WeatherHomeImpl value, $Res Function(_$WeatherHomeImpl) then) =
+      __$$WeatherHomeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -119,10 +122,11 @@ abstract class _$$HomeImplCopyWith<$Res> implements $HomeCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$HomeImplCopyWithImpl<$Res>
-    extends _$HomeCopyWithImpl<$Res, _$HomeImpl>
-    implements _$$HomeImplCopyWith<$Res> {
-  __$$HomeImplCopyWithImpl(_$HomeImpl _value, $Res Function(_$HomeImpl) _then)
+class __$$WeatherHomeImplCopyWithImpl<$Res>
+    extends _$WeatherHomeCopyWithImpl<$Res, _$WeatherHomeImpl>
+    implements _$$WeatherHomeImplCopyWith<$Res> {
+  __$$WeatherHomeImplCopyWithImpl(
+      _$WeatherHomeImpl _value, $Res Function(_$WeatherHomeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -133,7 +137,7 @@ class __$$HomeImplCopyWithImpl<$Res>
     Object? forecastHours = freezed,
     Object? forecasts = freezed,
   }) {
-    return _then(_$HomeImpl(
+    return _then(_$WeatherHomeImpl(
       location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -156,8 +160,8 @@ class __$$HomeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeImpl implements _Home {
-  const _$HomeImpl(
+class _$WeatherHomeImpl implements _WeatherHome {
+  const _$WeatherHomeImpl(
       {required this.location,
       this.currentWeather,
       final List<Weather>? forecastHours,
@@ -191,14 +195,14 @@ class _$HomeImpl implements _Home {
 
   @override
   String toString() {
-    return 'Home(location: $location, currentWeather: $currentWeather, forecastHours: $forecastHours, forecasts: $forecasts)';
+    return 'WeatherHome(location: $location, currentWeather: $currentWeather, forecastHours: $forecastHours, forecasts: $forecasts)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeImpl &&
+            other is _$WeatherHomeImpl &&
             (identical(other.location, location) ||
                 other.location == location) &&
             (identical(other.currentWeather, currentWeather) ||
@@ -220,16 +224,16 @@ class _$HomeImpl implements _Home {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeImplCopyWith<_$HomeImpl> get copyWith =>
-      __$$HomeImplCopyWithImpl<_$HomeImpl>(this, _$identity);
+  _$$WeatherHomeImplCopyWith<_$WeatherHomeImpl> get copyWith =>
+      __$$WeatherHomeImplCopyWithImpl<_$WeatherHomeImpl>(this, _$identity);
 }
 
-abstract class _Home implements Home {
-  const factory _Home(
+abstract class _WeatherHome implements WeatherHome {
+  const factory _WeatherHome(
       {required final Location location,
       final Weather? currentWeather,
       final List<Weather>? forecastHours,
-      final List<ForecastWeather>? forecasts}) = _$HomeImpl;
+      final List<ForecastWeather>? forecasts}) = _$WeatherHomeImpl;
 
   @override
   Location get location;
@@ -241,6 +245,6 @@ abstract class _Home implements Home {
   List<ForecastWeather>? get forecasts;
   @override
   @JsonKey(ignore: true)
-  _$$HomeImplCopyWith<_$HomeImpl> get copyWith =>
+  _$$WeatherHomeImplCopyWith<_$WeatherHomeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

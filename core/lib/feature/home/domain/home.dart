@@ -8,15 +8,15 @@ part 'home.freezed.dart';
 
 @freezed
 @immutable
-class Home with _$Home {
-  const factory Home({
+class WeatherHome with _$WeatherHome {
+  const factory WeatherHome({
     required Location location,
     Weather? currentWeather,
     List<Weather>? forecastHours,
     List<ForecastWeather>? forecasts,
-  }) = _Home;
+  }) = _WeatherHome;
 
-  factory Home.fromResponse(WeatherResponse weather) => Home(
+  factory WeatherHome.fromResponse(WeatherResponse weather) => WeatherHome(
       location: Location.fromResponse(weather.location),
       currentWeather: Weather.fromCurrentWeather(weather.current),
       //assume the first forecast is today's date
