@@ -47,6 +47,7 @@ enum WeatherCondition {
   moderateOrHeavyRainWithThunder,
   patchyLightSnowWithThunder,
   moderateOrHeavySnowWithThunder,
+  na,
 }
 
 Map<int, WeatherCondition> codeToWeatherCondition = {

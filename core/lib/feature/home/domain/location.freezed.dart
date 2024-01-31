@@ -111,11 +111,6 @@ class _$LocationImpl implements _Location {
   final String region;
 
   @override
-  String toString() {
-    return 'Location(name: $name, region: $region)';
-  }
-
-  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&

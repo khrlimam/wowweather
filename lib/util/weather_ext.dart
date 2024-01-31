@@ -1,0 +1,108 @@
+import 'package:core/feature/home/domain/weather/condition.dart';
+import 'package:flutter/material.dart';
+import 'package:weather_icons/weather_icons.dart';
+
+extension WeatherIconsExtension on WeatherCondition {
+  IconData getIcon() {
+    switch (this) {
+      case WeatherCondition.sunny:
+        return WeatherIcons.day_sunny;
+      case WeatherCondition.partlyCloudy:
+        return WeatherIcons.day_cloudy;
+      case WeatherCondition.cloudy:
+        return WeatherIcons.cloudy;
+      case WeatherCondition.overcast:
+        return WeatherIcons.day_sunny_overcast;
+      case WeatherCondition.mist:
+        return WeatherIcons.fog;
+      case WeatherCondition.patchyRainPossible:
+        return WeatherIcons.day_sprinkle;
+      case WeatherCondition.patchySnowPossible:
+        return WeatherIcons.snow_wind;
+      case WeatherCondition.patchySleetPossible:
+        return WeatherIcons.sleet;
+      case WeatherCondition.patchyFreezingDrizzlePossible:
+        return WeatherIcons.snowflake_cold;
+      case WeatherCondition.thunderyOutbreaksPossible:
+        return WeatherIcons.thunderstorm;
+      case WeatherCondition.blowingSnow:
+        return WeatherIcons.snow_wind;
+      case WeatherCondition.blizzard:
+        return WeatherIcons.snowflake_cold;
+      case WeatherCondition.fog:
+        return WeatherIcons.fog;
+      case WeatherCondition.freezingFog:
+        return WeatherIcons.fog;
+      case WeatherCondition.patchyLightDrizzle:
+        return WeatherIcons.raindrop;
+      case WeatherCondition.lightDrizzle:
+        return WeatherIcons.rain_mix;
+      case WeatherCondition.freezingDrizzle:
+        return WeatherIcons.raindrop;
+      case WeatherCondition.heavyFreezingDrizzle:
+        return WeatherIcons.raindrops;
+      case WeatherCondition.patchyLightRain:
+        return WeatherIcons.rain;
+      case WeatherCondition.lightRain:
+        return WeatherIcons.rain;
+      case WeatherCondition.moderateRainAtTimes:
+        return WeatherIcons.rain;
+      case WeatherCondition.moderateRain:
+        return WeatherIcons.rain;
+      case WeatherCondition.heavyRainAtTimes:
+        return WeatherIcons.raindrops;
+      case WeatherCondition.heavyRain:
+        return WeatherIcons.raindrop;
+      case WeatherCondition.lightFreezingRain:
+        return WeatherIcons.raindrops;
+      case WeatherCondition.moderateOrHeavyFreezingRain:
+        return WeatherIcons.raindrops;
+      case WeatherCondition.lightSleet:
+        return WeatherIcons.sleet;
+      case WeatherCondition.moderateOrHeavySleet:
+        return WeatherIcons.sleet;
+      case WeatherCondition.patchyLightSnow:
+        return WeatherIcons.snow;
+      case WeatherCondition.lightSnow:
+        return WeatherIcons.snow;
+      case WeatherCondition.patchyModerateSnow:
+        return WeatherIcons.snow;
+      case WeatherCondition.moderateSnow:
+        return WeatherIcons.snow;
+      case WeatherCondition.patchyHeavySnow:
+        return WeatherIcons.snow_wind;
+      case WeatherCondition.heavySnow:
+        return WeatherIcons.snow_wind;
+      case WeatherCondition.icePellets:
+        return WeatherIcons.snowflake_cold;
+      case WeatherCondition.lightRainShower:
+        return WeatherIcons.showers;
+      case WeatherCondition.moderateOrHeavyRainShower:
+        return WeatherIcons.showers;
+      case WeatherCondition.torrentialRainShower:
+        return WeatherIcons.showers;
+      case WeatherCondition.lightSleetShowers:
+        return WeatherIcons.sleet;
+      case WeatherCondition.moderateOrHeavySleetShowers:
+        return WeatherIcons.storm_showers;
+      case WeatherCondition.lightSnowShowers:
+        return WeatherIcons.snow;
+      case WeatherCondition.moderateOrHeavySnowShowers:
+        return WeatherIcons.snow_wind;
+      case WeatherCondition.lightShowersOfIcePellets:
+        return WeatherIcons.showers;
+      case WeatherCondition.moderateOrHeavyShowersOfIcePellets:
+        return WeatherIcons.showers;
+      case WeatherCondition.patchyLightRainWithThunder:
+        return WeatherIcons.storm_showers;
+      case WeatherCondition.moderateOrHeavyRainWithThunder:
+        return WeatherIcons.storm_showers;
+      case WeatherCondition.patchyLightSnowWithThunder:
+        return WeatherIcons.storm_showers;
+      case WeatherCondition.moderateOrHeavySnowWithThunder:
+        return WeatherIcons.storm_showers;
+      default:
+        return WeatherIcons.na;
+    }
+  }
+}

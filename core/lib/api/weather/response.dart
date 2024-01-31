@@ -2,6 +2,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part "response.g.dart";
 
+bool parseIntToBool(int data) => data == 1;
+
 @JsonSerializable()
 class WeatherResponse {
   @JsonKey(name: "location")
@@ -32,9 +34,9 @@ class CurrentResponse {
   @JsonKey(name: "temp_c")
   double tempC;
   @JsonKey(name: "temp_f")
-  int tempF;
-  @JsonKey(name: "is_day")
-  int isDay;
+  double tempF;
+  @JsonKey(name: "is_day", fromJson: parseIntToBool)
+  bool isDay;
   @JsonKey(name: "condition")
   Condition condition;
   @JsonKey(name: "wind_mph")
@@ -46,7 +48,7 @@ class CurrentResponse {
   @JsonKey(name: "wind_dir")
   String windDir;
   @JsonKey(name: "pressure_mb")
-  int pressureMb;
+  double pressureMb;
   @JsonKey(name: "pressure_in")
   double pressureIn;
   @JsonKey(name: "precip_mm")
@@ -56,23 +58,23 @@ class CurrentResponse {
   @JsonKey(name: "humidity")
   int humidity;
   @JsonKey(name: "cloud")
-  int cloud;
+  double cloud;
   @JsonKey(name: "feelslike_c")
-  int feelslikeC;
+  double feelslikeC;
   @JsonKey(name: "feelslike_f")
   double feelslikeF;
   @JsonKey(name: "vis_km")
   double visKm;
   @JsonKey(name: "vis_miles")
-  int visMiles;
+  double visMiles;
   @JsonKey(name: "uv")
-  int uv;
+  double uv;
   @JsonKey(name: "gust_mph")
   double gustMph;
   @JsonKey(name: "gust_kph")
   double gustKph;
   @JsonKey(name: "air_quality")
-  Map<String, double> airQuality;
+  Map<String, double>? airQuality;
 
   CurrentResponse({
     required this.lastUpdatedEpoch,
@@ -98,7 +100,7 @@ class CurrentResponse {
     required this.uv,
     required this.gustMph,
     required this.gustKph,
-    required this.airQuality,
+    this.airQuality,
   });
 
   factory CurrentResponse.fromJson(Map<String, dynamic> json) =>
@@ -184,33 +186,33 @@ class Day {
   @JsonKey(name: "maxwind_mph")
   double maxwindMph;
   @JsonKey(name: "maxwind_kph")
-  int maxwindKph;
+  double maxwindKph;
   @JsonKey(name: "totalprecip_mm")
   double totalprecipMm;
   @JsonKey(name: "totalprecip_in")
   double totalprecipIn;
   @JsonKey(name: "totalsnow_cm")
-  int totalsnowCm;
+  double totalsnowCm;
   @JsonKey(name: "avgvis_km")
   double avgvisKm;
   @JsonKey(name: "avgvis_miles")
-  int avgvisMiles;
+  double avgvisMiles;
   @JsonKey(name: "avghumidity")
   int avghumidity;
-  @JsonKey(name: "daily_will_it_rain")
-  int dailyWillItRain;
+  @JsonKey(name: "daily_will_it_rain", fromJson: parseIntToBool)
+  bool dailyWillItRain;
   @JsonKey(name: "daily_chance_of_rain")
   int dailyChanceOfRain;
-  @JsonKey(name: "daily_will_it_snow")
-  int dailyWillItSnow;
+  @JsonKey(name: "daily_will_it_snow", fromJson: parseIntToBool)
+  bool dailyWillItSnow;
   @JsonKey(name: "daily_chance_of_snow")
   int dailyChanceOfSnow;
   @JsonKey(name: "condition")
   Condition condition;
   @JsonKey(name: "uv")
-  int uv;
+  double uv;
   @JsonKey(name: "air_quality")
-  Map<String, double> airQuality;
+  Map<String, double>? airQuality;
 
   Day({
     required this.maxtempC,
@@ -233,7 +235,7 @@ class Day {
     required this.dailyChanceOfSnow,
     required this.condition,
     required this.uv,
-    required this.airQuality,
+    this.airQuality,
   });
 
   factory Day.fromJson(Map<String, dynamic> json) => _$DayFromJson(json);
@@ -264,7 +266,7 @@ class Hour {
   @JsonKey(name: "wind_dir")
   String windDir;
   @JsonKey(name: "pressure_mb")
-  int pressureMb;
+  double pressureMb;
   @JsonKey(name: "pressure_in")
   double pressureIn;
   @JsonKey(name: "precip_mm")
@@ -272,7 +274,7 @@ class Hour {
   @JsonKey(name: "precip_in")
   double precipIn;
   @JsonKey(name: "snow_cm")
-  int snowCm;
+  double snowCm;
   @JsonKey(name: "humidity")
   int humidity;
   @JsonKey(name: "cloud")
@@ -293,70 +295,69 @@ class Hour {
   double dewpointC;
   @JsonKey(name: "dewpoint_f")
   double dewpointF;
-  @JsonKey(name: "will_it_rain")
-  int willItRain;
+  @JsonKey(name: "will_it_rain", fromJson: parseIntToBool)
+  bool willItRain;
   @JsonKey(name: "chance_of_rain")
   int chanceOfRain;
-  @JsonKey(name: "will_it_snow")
-  int willItSnow;
+  @JsonKey(name: "will_it_snow", fromJson: parseIntToBool)
+  bool willItSnow;
   @JsonKey(name: "chance_of_snow")
   int chanceOfSnow;
   @JsonKey(name: "vis_km")
   double visKm;
   @JsonKey(name: "vis_miles")
-  int visMiles;
+  double visMiles;
   @JsonKey(name: "gust_mph")
   double gustMph;
   @JsonKey(name: "gust_kph")
   double gustKph;
   @JsonKey(name: "uv")
-  int uv;
+  double uv;
   @JsonKey(name: "air_quality")
-  Map<String, double> airQuality;
+  Map<String, double>? airQuality;
   @JsonKey(name: "short_rad")
-  int shortRad;
+  double shortRad;
   @JsonKey(name: "diff_rad")
-  int diffRad;
+  double diffRad;
 
-  Hour({
-    required this.timeEpoch,
-    required this.time,
-    required this.tempC,
-    required this.tempF,
-    required this.isDay,
-    required this.condition,
-    required this.windMph,
-    required this.windKph,
-    required this.windDegree,
-    required this.windDir,
-    required this.pressureMb,
-    required this.pressureIn,
-    required this.precipMm,
-    required this.precipIn,
-    required this.snowCm,
-    required this.humidity,
-    required this.cloud,
-    required this.feelslikeC,
-    required this.feelslikeF,
-    required this.windchillC,
-    required this.windchillF,
-    required this.heatindexC,
-    required this.heatindexF,
-    required this.dewpointC,
-    required this.dewpointF,
-    required this.willItRain,
-    required this.chanceOfRain,
-    required this.willItSnow,
-    required this.chanceOfSnow,
-    required this.visKm,
-    required this.visMiles,
-    required this.gustMph,
-    required this.gustKph,
-    required this.uv,
-    required this.airQuality,
-    required this.shortRad,
-    required this.diffRad,
-  });
+  Hour(
+      {required this.timeEpoch,
+      required this.time,
+      required this.tempC,
+      required this.tempF,
+      required this.isDay,
+      required this.condition,
+      required this.windMph,
+      required this.windKph,
+      required this.windDegree,
+      required this.windDir,
+      required this.pressureMb,
+      required this.pressureIn,
+      required this.precipMm,
+      required this.precipIn,
+      required this.snowCm,
+      required this.humidity,
+      required this.cloud,
+      required this.feelslikeC,
+      required this.feelslikeF,
+      required this.windchillC,
+      required this.windchillF,
+      required this.heatindexC,
+      required this.heatindexF,
+      required this.dewpointC,
+      required this.dewpointF,
+      required this.willItRain,
+      required this.chanceOfRain,
+      required this.willItSnow,
+      required this.chanceOfSnow,
+      required this.visKm,
+      required this.visMiles,
+      required this.gustMph,
+      required this.gustKph,
+      required this.uv,
+      required this.shortRad,
+      required this.diffRad,
+      this.airQuality});
 
   factory Hour.fromJson(Map<String, dynamic> json) => _$HourFromJson(json);
 

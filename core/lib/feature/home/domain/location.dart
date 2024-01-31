@@ -11,6 +11,9 @@ class Location with _$Location {
     @Default("") String region,
   }) = _Location;
 
+  @override
+  String toString() => '$name, $region';
+
   factory Location.fromResponse(LocationResponse location) =>
-      Location(name: location.name);
+      Location(name: location.name, region: location.region);
 }

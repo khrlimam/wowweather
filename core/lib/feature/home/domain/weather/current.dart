@@ -24,7 +24,7 @@ class Weather with _$Weather {
   const Weather._();
 
   WeatherCondition get weatherCondition =>
-      codeToWeatherCondition[conditionCode] ?? WeatherCondition.sunny;
+      codeToWeatherCondition[conditionCode] ?? WeatherCondition.na;
 
   DateTime get dateFromEpoch =>
       DateTime.fromMicrosecondsSinceEpoch(dateEpoch ?? 0);
