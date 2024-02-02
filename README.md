@@ -8,9 +8,11 @@ This weather app uses view model architecture, incorporating [mobx](https://gith
 
 ## Getting Started
 
-Before running this app try to run below command on main and core directory to build necessary
+Before running this app try to run below command on both main and core directory to build necessary
 generated files
 
 ```bash
+flutter pub get
 dart run build_runner build --delete-conflicting-outputs
 ```
+when build runner finished then run `flutter run`
