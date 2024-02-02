@@ -5,6 +5,7 @@ import 'package:core/feature/home/domain/weather/current.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:weather_icons/weather_icons.dart';
+import 'package:wow_weather/callback/default.dart';
 import 'package:wow_weather/ui/home/vm.dart';
 import 'package:wow_weather/util/after_layout.dart';
 import 'package:wow_weather/util/weather_ext.dart';
@@ -52,7 +53,8 @@ class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage> {
           borderRadius: BorderRadius.circular(20),
           color: _colorScheme.onPrimaryContainer,
         ),
-        child: Text("Today in ${_homeViewModel.weatherHome?.location?.toString()}",
+        child: Text(
+            "Today in ${_homeViewModel.weatherHome?.location?.toString()}",
             style: _textTheme.labelSmall?.copyWith(color: Colors.white)),
       ),
     );
@@ -304,7 +306,34 @@ class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _homeViewModel.setUiStateCallback(
+        defaultUiState(loading: _loading, finished: _finished, error: _error));
+  }
+
+  @override
   FutureOr<void> afterFirstLayout(BuildContext context) {
     _homeViewModel.init();
+  }
+
+  ScaffoldFeatureController? _uiStateSnackBar;
+
+  ScaffoldFeatureController _snackBar(Widget child) {
+    return ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: child));
+  }
+
+  void _loading() {
+    _uiStateSnackBar = _snackBar(Text("Loading weather..."));
+  }
+
+  void _finished() {
+    _uiStateSnackBar?.close();
+  }
+
+  // can implement better error response on core
+  void _error(Exception value) {
+    _finished();
+    _uiStateSnackBar = _snackBar(Text(value.toString()));
   }
 }

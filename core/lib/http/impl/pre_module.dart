@@ -12,6 +12,7 @@ abstract class ApiPreModule {
       dio.interceptors
           .add(LogInterceptor(requestBody: true, responseBody: true));
     }
+
     return dio;
   }
 }

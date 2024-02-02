@@ -12,6 +12,8 @@ import 'package:mobx/mobx.dart';
 import 'package:wow_weather/ui/home/vm.dart';
 import 'package:wow_weather/util/consts.dart';
 
+import '../../callback/default.dart';
+
 part 'vm_impl.g.dart';
 
 @Injectable(as: HomeViewModel)
@@ -22,16 +24,29 @@ abstract class HomeViewModelBase with Store implements HomeViewModel {
 
   late StreamSubscription<WeatherHome> _subscription;
 
+  late Exception exception;
+
+  DefaultUiStateCallback? _callback;
+
   HomeViewModelBase(this._forecastUseCase);
 
   @override
   @action
   void searchWeather(String location) {
-    _subscription = _forecastUseCase(location).listen((resp) {
+    _callback?.onLoading();
+    _subscription = _forecastUseCase(location).handleError((err) {
+      _callback?.onError(err);
+    }).listen((resp) {
+      _callback?.onFinished();
       _weatherHome = resp;
       _updateWeeklyForecast(resp.weeklyForecasts);
       _updateHourlyForecast(resp.hourlyForecasts);
     });
+  }
+
+  @override
+  void setUiStateCallback(DefaultUiStateCallback callback) {
+    _callback = callback;
   }
 
   @override
