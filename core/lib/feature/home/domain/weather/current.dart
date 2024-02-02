@@ -1,7 +1,7 @@
 import 'package:core/api/weather/response.dart';
 import 'package:core/feature/home/domain/weather/condition.dart';
+import 'package:core/util/exts.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../const/const.dart';
 
@@ -23,17 +23,21 @@ class Weather with _$Weather {
 
   const Weather._();
 
+  String get simpleDesc => '$humidity';
+
   WeatherCondition get weatherCondition =>
       codeToWeatherCondition[conditionCode] ?? WeatherCondition.na;
 
-  DateTime get dateFromEpoch =>
-      DateTime.fromMicrosecondsSinceEpoch(dateEpoch ?? 0);
+  DateTime get date => DateTime.parse(dateDesc ?? "");
 
-  String get dateEpochDescription =>
-      DateFormat(kDefaultDateFormat).format(dateFromEpoch);
+  String get dateSimpleFormat =>
+      date.format(kDefaultSimpleDateFormat);
+
+  String get dateDefaultFormat => date.format(kDefaultDateFormat);
 
   factory Weather.fromCurrentWeather(CurrentResponse weather) => Weather(
         dateEpoch: weather.lastUpdatedEpoch,
+        dateDesc: weather.lastUpdated,
         tempInCelcius: weather.tempC,
         conditionCode: weather.condition.code,
         conditionDesc: weather.condition.text,
@@ -44,6 +48,7 @@ class Weather with _$Weather {
 
   factory Weather.fromForecastDay(ForecastDay weather) => Weather(
         dateEpoch: weather.dateEpoch,
+        dateDesc: weather.date,
         tempInCelcius: weather.day.avgtempC,
         conditionCode: weather.day.condition.code,
         conditionDesc: weather.day.condition.text,

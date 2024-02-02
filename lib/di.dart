@@ -1,7 +1,7 @@
 import 'package:core/di.dart';
 import 'package:injectable/injectable.dart';
+import 'package:wow_weather/di.config.dart';
 
-import 'di.config.dart';
 
 @InjectableInit(
   initializerName: r'$initGetIt', // default

@@ -10,20 +10,20 @@ part 'home.freezed.dart';
 @immutable
 class WeatherHome with _$WeatherHome {
   const factory WeatherHome({
-    required Location location,
+    Location? location,
     Weather? currentWeather,
-    List<Weather>? forecastHours,
-    List<ForecastWeather>? forecasts,
+    @Default([]) List<Weather> hourlyForecasts,
+    @Default([]) List<ForecastWeather> weeklyForecasts,
   }) = _WeatherHome;
 
   factory WeatherHome.fromResponse(WeatherResponse weather) => WeatherHome(
       location: Location.fromResponse(weather.location),
       currentWeather: Weather.fromCurrentWeather(weather.current),
       //assume the first forecast is today's date
-      forecastHours: weather.forecast.forecastDay.first.hour
+      hourlyForecasts: weather.forecast.forecastDay.first.hour
           .map((hourly) => Weather.fromForecastHour(hourly))
           .toList(),
-      forecasts: weather.forecast.forecastDay
+      weeklyForecasts: weather.forecast.forecastDay
           .map((day) => ForecastWeather(
               day: Weather.fromForecastDay(day),
               hour: day.hour

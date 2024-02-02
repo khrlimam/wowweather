@@ -148,7 +148,7 @@ class ForecastResponse {
 @JsonSerializable()
 class ForecastDay {
   @JsonKey(name: "date")
-  DateTime date;
+  String date;
   @JsonKey(name: "date_epoch")
   int dateEpoch;
   @JsonKey(name: "day")

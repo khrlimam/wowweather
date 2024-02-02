@@ -16,10 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$WeatherHome {
-  Location get location => throw _privateConstructorUsedError;
+  Location? get location => throw _privateConstructorUsedError;
   Weather? get currentWeather => throw _privateConstructorUsedError;
-  List<Weather>? get forecastHours => throw _privateConstructorUsedError;
-  List<ForecastWeather>? get forecasts => throw _privateConstructorUsedError;
+  List<Weather> get hourlyForecasts => throw _privateConstructorUsedError;
+  List<ForecastWeather> get weeklyForecasts =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WeatherHomeCopyWith<WeatherHome> get copyWith =>
@@ -33,12 +34,12 @@ abstract class $WeatherHomeCopyWith<$Res> {
       _$WeatherHomeCopyWithImpl<$Res, WeatherHome>;
   @useResult
   $Res call(
-      {Location location,
+      {Location? location,
       Weather? currentWeather,
-      List<Weather>? forecastHours,
-      List<ForecastWeather>? forecasts});
+      List<Weather> hourlyForecasts,
+      List<ForecastWeather> weeklyForecasts});
 
-  $LocationCopyWith<$Res> get location;
+  $LocationCopyWith<$Res>? get location;
   $WeatherCopyWith<$Res>? get currentWeather;
 }
 
@@ -55,35 +56,39 @@ class _$WeatherHomeCopyWithImpl<$Res, $Val extends WeatherHome>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? location = null,
+    Object? location = freezed,
     Object? currentWeather = freezed,
-    Object? forecastHours = freezed,
-    Object? forecasts = freezed,
+    Object? hourlyForecasts = null,
+    Object? weeklyForecasts = null,
   }) {
     return _then(_value.copyWith(
-      location: null == location
+      location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as Location,
+              as Location?,
       currentWeather: freezed == currentWeather
           ? _value.currentWeather
           : currentWeather // ignore: cast_nullable_to_non_nullable
               as Weather?,
-      forecastHours: freezed == forecastHours
-          ? _value.forecastHours
-          : forecastHours // ignore: cast_nullable_to_non_nullable
-              as List<Weather>?,
-      forecasts: freezed == forecasts
-          ? _value.forecasts
-          : forecasts // ignore: cast_nullable_to_non_nullable
-              as List<ForecastWeather>?,
+      hourlyForecasts: null == hourlyForecasts
+          ? _value.hourlyForecasts
+          : hourlyForecasts // ignore: cast_nullable_to_non_nullable
+              as List<Weather>,
+      weeklyForecasts: null == weeklyForecasts
+          ? _value.weeklyForecasts
+          : weeklyForecasts // ignore: cast_nullable_to_non_nullable
+              as List<ForecastWeather>,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $LocationCopyWith<$Res> get location {
-    return $LocationCopyWith<$Res>(_value.location, (value) {
+  $LocationCopyWith<$Res>? get location {
+    if (_value.location == null) {
+      return null;
+    }
+
+    return $LocationCopyWith<$Res>(_value.location!, (value) {
       return _then(_value.copyWith(location: value) as $Val);
     });
   }
@@ -110,13 +115,13 @@ abstract class _$$WeatherHomeImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Location location,
+      {Location? location,
       Weather? currentWeather,
-      List<Weather>? forecastHours,
-      List<ForecastWeather>? forecasts});
+      List<Weather> hourlyForecasts,
+      List<ForecastWeather> weeklyForecasts});
 
   @override
-  $LocationCopyWith<$Res> get location;
+  $LocationCopyWith<$Res>? get location;
   @override
   $WeatherCopyWith<$Res>? get currentWeather;
 }
@@ -132,28 +137,28 @@ class __$$WeatherHomeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? location = null,
+    Object? location = freezed,
     Object? currentWeather = freezed,
-    Object? forecastHours = freezed,
-    Object? forecasts = freezed,
+    Object? hourlyForecasts = null,
+    Object? weeklyForecasts = null,
   }) {
     return _then(_$WeatherHomeImpl(
-      location: null == location
+      location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
-              as Location,
+              as Location?,
       currentWeather: freezed == currentWeather
           ? _value.currentWeather
           : currentWeather // ignore: cast_nullable_to_non_nullable
               as Weather?,
-      forecastHours: freezed == forecastHours
-          ? _value._forecastHours
-          : forecastHours // ignore: cast_nullable_to_non_nullable
-              as List<Weather>?,
-      forecasts: freezed == forecasts
-          ? _value._forecasts
-          : forecasts // ignore: cast_nullable_to_non_nullable
-              as List<ForecastWeather>?,
+      hourlyForecasts: null == hourlyForecasts
+          ? _value._hourlyForecasts
+          : hourlyForecasts // ignore: cast_nullable_to_non_nullable
+              as List<Weather>,
+      weeklyForecasts: null == weeklyForecasts
+          ? _value._weeklyForecasts
+          : weeklyForecasts // ignore: cast_nullable_to_non_nullable
+              as List<ForecastWeather>,
     ));
   }
 }
@@ -162,40 +167,38 @@ class __$$WeatherHomeImplCopyWithImpl<$Res>
 
 class _$WeatherHomeImpl implements _WeatherHome {
   const _$WeatherHomeImpl(
-      {required this.location,
+      {this.location,
       this.currentWeather,
-      final List<Weather>? forecastHours,
-      final List<ForecastWeather>? forecasts})
-      : _forecastHours = forecastHours,
-        _forecasts = forecasts;
+      final List<Weather> hourlyForecasts = const [],
+      final List<ForecastWeather> weeklyForecasts = const []})
+      : _hourlyForecasts = hourlyForecasts,
+        _weeklyForecasts = weeklyForecasts;
 
   @override
-  final Location location;
+  final Location? location;
   @override
   final Weather? currentWeather;
-  final List<Weather>? _forecastHours;
+  final List<Weather> _hourlyForecasts;
   @override
-  List<Weather>? get forecastHours {
-    final value = _forecastHours;
-    if (value == null) return null;
-    if (_forecastHours is EqualUnmodifiableListView) return _forecastHours;
+  @JsonKey()
+  List<Weather> get hourlyForecasts {
+    if (_hourlyForecasts is EqualUnmodifiableListView) return _hourlyForecasts;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_hourlyForecasts);
   }
 
-  final List<ForecastWeather>? _forecasts;
+  final List<ForecastWeather> _weeklyForecasts;
   @override
-  List<ForecastWeather>? get forecasts {
-    final value = _forecasts;
-    if (value == null) return null;
-    if (_forecasts is EqualUnmodifiableListView) return _forecasts;
+  @JsonKey()
+  List<ForecastWeather> get weeklyForecasts {
+    if (_weeklyForecasts is EqualUnmodifiableListView) return _weeklyForecasts;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_weeklyForecasts);
   }
 
   @override
   String toString() {
-    return 'WeatherHome(location: $location, currentWeather: $currentWeather, forecastHours: $forecastHours, forecasts: $forecasts)';
+    return 'WeatherHome(location: $location, currentWeather: $currentWeather, hourlyForecasts: $hourlyForecasts, weeklyForecasts: $weeklyForecasts)';
   }
 
   @override
@@ -208,9 +211,9 @@ class _$WeatherHomeImpl implements _WeatherHome {
             (identical(other.currentWeather, currentWeather) ||
                 other.currentWeather == currentWeather) &&
             const DeepCollectionEquality()
-                .equals(other._forecastHours, _forecastHours) &&
+                .equals(other._hourlyForecasts, _hourlyForecasts) &&
             const DeepCollectionEquality()
-                .equals(other._forecasts, _forecasts));
+                .equals(other._weeklyForecasts, _weeklyForecasts));
   }
 
   @override
@@ -218,8 +221,8 @@ class _$WeatherHomeImpl implements _WeatherHome {
       runtimeType,
       location,
       currentWeather,
-      const DeepCollectionEquality().hash(_forecastHours),
-      const DeepCollectionEquality().hash(_forecasts));
+      const DeepCollectionEquality().hash(_hourlyForecasts),
+      const DeepCollectionEquality().hash(_weeklyForecasts));
 
   @JsonKey(ignore: true)
   @override
@@ -230,19 +233,19 @@ class _$WeatherHomeImpl implements _WeatherHome {
 
 abstract class _WeatherHome implements WeatherHome {
   const factory _WeatherHome(
-      {required final Location location,
+      {final Location? location,
       final Weather? currentWeather,
-      final List<Weather>? forecastHours,
-      final List<ForecastWeather>? forecasts}) = _$WeatherHomeImpl;
+      final List<Weather> hourlyForecasts,
+      final List<ForecastWeather> weeklyForecasts}) = _$WeatherHomeImpl;
 
   @override
-  Location get location;
+  Location? get location;
   @override
   Weather? get currentWeather;
   @override
-  List<Weather>? get forecastHours;
+  List<Weather> get hourlyForecasts;
   @override
-  List<ForecastWeather>? get forecasts;
+  List<ForecastWeather> get weeklyForecasts;
   @override
   @JsonKey(ignore: true)
   _$$WeatherHomeImplCopyWith<_$WeatherHomeImpl> get copyWith =>

@@ -101,8 +101,8 @@ class __$$LocationImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LocationImpl implements _Location {
-  const _$LocationImpl({required this.name, this.region = ""});
+class _$LocationImpl extends _Location {
+  const _$LocationImpl({required this.name, this.region = ""}) : super._();
 
   @override
   final String name;
@@ -129,9 +129,10 @@ class _$LocationImpl implements _Location {
       __$$LocationImplCopyWithImpl<_$LocationImpl>(this, _$identity);
 }
 
-abstract class _Location implements Location {
+abstract class _Location extends Location {
   const factory _Location({required final String name, final String region}) =
       _$LocationImpl;
+  const _Location._() : super._();
 
   @override
   String get name;

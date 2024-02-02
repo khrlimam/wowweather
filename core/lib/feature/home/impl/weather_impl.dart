@@ -2,7 +2,7 @@ import 'package:core/api/weather/service.dart';
 import 'package:core/feature/home/domain/home.dart';
 import 'package:core/feature/home/repo/weather.dart';
 import 'package:injectable/injectable.dart';
-import 'package:rxdart_ext/src/single/single.dart';
+import 'package:rxdart_ext/single.dart';
 
 @Singleton(as: WeatherRepository)
 class WeatherRepositoryImpl implements WeatherRepository {

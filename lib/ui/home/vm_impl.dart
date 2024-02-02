@@ -1,6 +1,10 @@
+// ignore_for_file: prefer_final_fields
+
 import 'dart:async';
 
 import 'package:core/feature/home/domain/home.dart';
+import 'package:core/feature/home/domain/weather/current.dart';
+import 'package:core/feature/home/domain/weather/forecast.dart';
 import 'package:core/feature/home/usecase/get_weather.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
@@ -11,20 +15,22 @@ import 'package:wow_weather/util/consts.dart';
 part 'vm_impl.g.dart';
 
 @Injectable(as: HomeViewModel)
-class HomeViewModelImpl = _HomeViewModelImpl with _$HomeViewModelImpl;
+class HomeViewModelImpl = HomeViewModelBase with _$HomeViewModelImpl;
 
-abstract class _HomeViewModelImpl with Store implements HomeViewModel {
+abstract class HomeViewModelBase with Store implements HomeViewModel {
   final GetWeatherForecastUseCase _forecastUseCase;
 
   late StreamSubscription<WeatherHome> _subscription;
 
-  _HomeViewModelImpl(this._forecastUseCase);
+  HomeViewModelBase(this._forecastUseCase);
 
-  @action
   @override
+  @action
   void searchWeather(String location) {
-    _subscription = _forecastUseCase(location).listen((value) {
-      _weatherHome = value;
+    _subscription = _forecastUseCase(location).listen((resp) {
+      _weatherHome = resp;
+      _updateWeeklyForecast(resp.weeklyForecasts);
+      _updateHourlyForecast(resp.hourlyForecasts);
     });
   }
 
@@ -38,11 +44,38 @@ abstract class _HomeViewModelImpl with Store implements HomeViewModel {
     _subscription.cancel();
   }
 
+  void _updateList<T>(List<T> Function() list, List<T> newData) {
+    list().clear();
+    list().addAll(newData);
+  }
+
+  void _updateHourlyForecast(List<Weather> data) =>
+      _updateList(() => _hourlyForecasts, data);
+
+  void _updateWeeklyForecast(List<ForecastWeather> data) =>
+      _updateList(() => _weeklyForecasts, data);
+
   @protected
   @observable
-  late WeatherHome _weatherHome;
+  ObservableList<Weather> _hourlyForecasts = ObservableList.of([]);
 
-  @computed
   @override
-  WeatherHome get weatherHome => _weatherHome;
+  @computed
+  ObservableList<Weather> get hourlyForecasts => _hourlyForecasts;
+
+  @protected
+  @observable
+  ObservableList<ForecastWeather> _weeklyForecasts = ObservableList.of([]);
+
+  @override
+  @computed
+  ObservableList<ForecastWeather> get weeklyForecasts => _weeklyForecasts;
+
+  @protected
+  @observable
+  WeatherHome? _weatherHome;
+
+  @override
+  @computed
+  WeatherHome? get weatherHome => _weatherHome;
 }

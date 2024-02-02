@@ -11,6 +11,8 @@ class Location with _$Location {
     @Default("") String region,
   }) = _Location;
 
+  const Location._();
+
   @override
   String toString() => '$name, $region';
 

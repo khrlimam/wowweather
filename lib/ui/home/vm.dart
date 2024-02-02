@@ -1,7 +1,13 @@
 import 'package:core/feature/home/domain/home.dart';
+import 'package:core/feature/home/domain/weather/current.dart';
+import 'package:core/feature/home/domain/weather/forecast.dart';
 
 mixin HomeViewModel {
-  WeatherHome get weatherHome;
+  WeatherHome? get weatherHome;
+
+  List<ForecastWeather> get weeklyForecasts;
+
+  List<Weather> get hourlyForecasts;
 
   void searchWeather(String location);
 

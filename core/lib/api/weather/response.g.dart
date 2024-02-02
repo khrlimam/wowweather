@@ -106,7 +106,7 @@ Map<String, dynamic> _$ForecastResponseToJson(ForecastResponse instance) =>
     };
 
 ForecastDay _$ForecastDayFromJson(Map<String, dynamic> json) => ForecastDay(
-      date: DateTime.parse(json['date'] as String),
+      date: json['date'] as String,
       dateEpoch: json['date_epoch'] as int,
       day: Day.fromJson(json['day'] as Map<String, dynamic>),
       hour: (json['hour'] as List<dynamic>)
@@ -116,7 +116,7 @@ ForecastDay _$ForecastDayFromJson(Map<String, dynamic> json) => ForecastDay(
 
 Map<String, dynamic> _$ForecastDayToJson(ForecastDay instance) =>
     <String, dynamic>{
-      'date': instance.date.toIso8601String(),
+      'date': instance.date,
       'date_epoch': instance.dateEpoch,
       'day': instance.day,
       'hour': instance.hour,
