@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage> {
           color: _colorScheme.onPrimaryContainer,
         ),
         child: Text(
-            "Today in ${_homeViewModel.weatherHome?.location?.toString()}",
+            "Today in ${_homeViewModel.weatherHome?.location?.toString() ?? ""}",
             style: _textTheme.labelSmall?.copyWith(color: Colors.white)),
       ),
     );
@@ -98,13 +98,15 @@ class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage> {
                     ),
                   ),
                   Text(
-                    "${_homeViewModel.weatherHome?.currentWeather?.conditionDesc?.titled()}",
+                    _homeViewModel.weatherHome?.currentWeather?.conditionDesc
+                            ?.titled() ??
+                        "",
                     style: _textTheme.labelMedium,
                   )
                 ],
               ),
               Text(
-                  "${_homeViewModel.weatherHome?.currentWeather?.tempInCelcius}°",
+                  "${_homeViewModel.weatherHome?.currentWeather?.tempInCelcius ?? ""}°",
                   style: _textTheme.headlineLarge
                       ?.copyWith(fontWeight: FontWeight.w500, fontSize: 120)),
               _windHumidityVisibilityCard(
@@ -287,17 +289,17 @@ class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage> {
             cardItem(
               WeatherIcons.windy,
               kWind,
-              "${weather?.windKiloPerHour}km/h",
+              "${weather?.windKiloPerHour ?? ""}km/h",
             ),
             cardItem(
               WeatherIcons.raindrop,
               kHumidity,
-              "${weather?.humidity}%",
+              "${weather?.humidity ?? ""}%",
             ),
             cardItem(
               Icons.remove_red_eye_outlined,
               kVisibility,
-              "${weather?.visibilityInKm}km",
+              "${weather?.visibilityInKm ?? ""}km",
             ),
           ],
         ),
@@ -320,11 +322,11 @@ class _HomePageState extends State<HomePage> with AfterLayoutMixin<HomePage> {
   ScaffoldFeatureController? _uiStateSnackBar;
 
   ScaffoldFeatureController _snackBar(Widget child) {
-    return ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: child));
+    return ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: child, dismissDirection: DismissDirection.horizontal,));
   }
 
   void _loading() {
-    _uiStateSnackBar = _snackBar(Text("Loading weather..."));
+    _uiStateSnackBar = _snackBar(const Text(kLoadingWeather));
   }
 
   void _finished() {
